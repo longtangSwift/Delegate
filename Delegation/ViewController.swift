@@ -19,7 +19,7 @@ class ViewController: UIViewController, DataEnteredDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showSecondVC"{
             let secondVC: SecondViewController = segue.destinationViewController as! SecondViewController
-            secondVC.delegate = self //because we have adapted to its protocl.
+            secondVC.delegate = self //because we have adapted to its protocl. we call it self
             
         }
     }
