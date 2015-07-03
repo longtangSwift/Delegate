@@ -21,7 +21,7 @@ class ViewController: UIViewController, DataEnteredDelegate {
     }
     
     func getExtraInfo(inf: String){
-        extraInfo.text = inf
+        extraInfo.text = inf  //make some extra info to delegate
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showSecondVC"{
