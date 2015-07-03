@@ -15,6 +15,7 @@
 		29FC4D211B4648FD003AB34E /* DelegationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FC4D201B4648FD003AB34E /* DelegationTests.swift */; };
 		29FC4D2C1B4648FD003AB34E /* DelegationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FC4D2B1B4648FD003AB34E /* DelegationUITests.swift */; };
 		29FC4D3A1B464FCF003AB34E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FC4D391B464FCF003AB34E /* SecondViewController.swift */; };
+		29FC4D3C1B466B19003AB34E /* LinearCongruentialGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FC4D3B1B466B19003AB34E /* LinearCongruentialGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		29FC4D2B1B4648FD003AB34E /* DelegationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegationUITests.swift; sourceTree = "<group>"; };
 		29FC4D2D1B4648FD003AB34E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29FC4D391B464FCF003AB34E /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		29FC4D3B1B466B19003AB34E /* LinearCongruentialGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearCongruentialGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 				29FC4D141B4648FD003AB34E /* LaunchScreen.storyboard */,
 				29FC4D171B4648FD003AB34E /* Info.plist */,
 				29FC4D0B1B4648FD003AB34E /* AppDelegate.swift */,
+				29FC4D3B1B466B19003AB34E /* LinearCongruentialGenerator.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -262,6 +265,7 @@
 				29FC4D3A1B464FCF003AB34E /* SecondViewController.swift in Sources */,
 				29FC4D0E1B4648FD003AB34E /* ViewController.swift in Sources */,
 				29FC4D0C1B4648FD003AB34E /* AppDelegate.swift in Sources */,
+				29FC4D3C1B466B19003AB34E /* LinearCongruentialGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

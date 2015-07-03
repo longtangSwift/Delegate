@@ -10,6 +10,7 @@ import UIKit
 
 protocol DataEnteredDelegate: class{
     func userDidEnterInformation(info: String)
+    func getSomeXtraInf(randNum: String)
 }
 
 class SecondViewController: UIViewController {
@@ -18,35 +19,38 @@ class SecondViewController: UIViewController {
     var delegate: DataEnteredDelegate? = nil
     
     
-    @IBOutlet weak var dataTextField: UITextView!
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+
+    //--The model of our MVC live below:  we get info from the dataTextField and also from the extraInf string.
+    
+    @IBOutlet weak var dataTextField: UITextView!
+
     
     @IBAction func sendData(sender: AnyObject) {
         if delegate != nil {
             let information: String = dataTextField.text
             delegate!.userDidEnterInformation(information)
             self.navigationController?.popViewControllerAnimated(true)
+            delegate!.getSomeXtraInf(extraInf)
         }
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    //-- the 2nd model of our MVC lives below:  The bit of extra is a random # that is generated.
+    var extraInf: String {
+        get{
+            let randX: RandomNumberGenerator = LinearCongruentialGenerator()
+            return "\(randX.random())"
+        }
     }
-    */
 
 }
