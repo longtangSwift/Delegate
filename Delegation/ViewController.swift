@@ -20,9 +20,10 @@ class ViewController: UIViewController, DataEnteredDelegate {
         extraInfo.text = "bonus " + randNumStr
     }
     
-    func getExtraInfo(inf: String){
-        extraInfo.text = inf  //make some extra info to delegate
-    }
+//    func getExtraInfo(inf: String){
+//        extraInfo.text = inf  //make some extra info to delegate
+//    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showSecondVC"{
             let secondVC: SecondViewController = segue.destinationViewController as! SecondViewController
