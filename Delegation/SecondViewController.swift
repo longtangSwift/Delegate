@@ -12,6 +12,7 @@ protocol DataEnteredDelegate: class{
     func userDidEnterInformation(info: String)
     //anytihng that conforms to this will have a func that receives a string.  Within the func, the func will set the text, so it doesn't need to return anything.  The method will do the work of setting the text of the label.
     func getSomeXtraInf(randNum: String)
+    func pasByaMethod(str: String)
 }
 
 class SecondViewController: UIViewController, GetStuffFromFirstViewDelegate {
@@ -23,7 +24,7 @@ class SecondViewController: UIViewController, GetStuffFromFirstViewDelegate {
     }
     
     func getInfoFromFirstView(infoStr: String?) {
-        print("we are in ViewTwo and the stuff we got from ViewOne is infoStr: \(infoStr)")
+        print("we are in ViewTwo and the stuff we got from ViewOne is infoStr: \(infoStr!)")
     }
     
     override func viewDidLoad() {
@@ -42,6 +43,7 @@ class SecondViewController: UIViewController, GetStuffFromFirstViewDelegate {
     
     @IBOutlet weak var dataTextField: UITextView!
 
+    @IBOutlet weak var withouSegueDataField: UILabel!
     //this action will QuasiSegue back to firstVC.  So, this is kind of like our prepareforSegue. And it is: it takes the information from SecondVC back to FirstVC by sending strings to the two methods: userDidEnterINformation and getSomeXtraInf which are methods that conform to the DataEnteredDelegate protocol
     @IBAction func sendData(sender: AnyObject) {
         if delegate != nil {
@@ -58,8 +60,16 @@ class SecondViewController: UIViewController, GetStuffFromFirstViewDelegate {
         FirstVC?.delegateActingOnBehalfOfViewTwoToGetThingsFromViewOne = self //because we have conformed to the GetStuffFromFirstViewDelegate protocol we can send that delegate into viewone.
         
         //self.navigationController?.popToRootViewControllerAnimated(true)
-        
     }
+    @IBAction func goBackWithoutSegue(sender: AnyObject) {
+        if delegate != nil {
+            let information: String = withouSegueDataField.text!
+            delegate!.pasByaMethod(information)
+            self.navigationController?.popToRootViewControllerAnimated(true)
+        }
+    }
+    
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var destination: UIViewController?
@@ -82,6 +92,7 @@ class SecondViewController: UIViewController, GetStuffFromFirstViewDelegate {
                         print("in case DismissAndGoFirVC and dataTexFild = \(information)")
                         delegate!.userDidEnterInformation(dataTextField.text)
                         firsVC.holdString = information
+                        firsVC.holdStringExtraInfo = "bonus: " + extraInf
                         
                     default:
                         break

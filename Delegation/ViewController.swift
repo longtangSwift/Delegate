@@ -16,22 +16,35 @@ class ViewController: UIViewController, DataEnteredDelegate {
     
     @IBOutlet weak var dataLabel: UILabel!
     @IBOutlet weak var extraInfo: UILabel!
+    @IBOutlet weak var passedByMethodDataLabel: UILabel!
     var delegateActingOnBehalfOfViewTwoToGetThingsFromViewOne: GetStuffFromFirstViewDelegate? = nil
-    var holdString = String() //use a holding string to get the info and hold it; because I think we are getting that info before the viewDidLoad
+    var holdString = String() //use a holding string to get the info and hold it; because I think we are getting that info before the viewDidLoad.  Once ViewDidLoad, then we can set the dataLabel.text; has to be a public var
+    var holdStringExtraInfo = String() //use this holding string to get extra bonus info
     override func viewDidLoad() {
-        print("in viewDidLoad and holdingString is \(holdString)")
         dataLabel.text = holdString
+        extraInfo.text = holdStringExtraInfo
     }
+    
+    
+    //these first two methods won't hold because they happen before viewDidLoad because we are segueing to it.
+
     func userDidEnterInformation(info: String) {
         dataLabel.text = info
-        print("The only place we are calling userDidEnterInformation method is in the prepareforSeg residing in SecondViewController: and dataDabel.tx = \(dataLabel.text) and info is \(info)")
         holdString = info
-        print("holdingString = \(holdString)")
+        print("we are in userDidEI and holdString is \(holdString)")
     }
     func getSomeXtraInf(randNumStr: String) {
         extraInfo.text = "bonus " + randNumStr
+        print("we are in getSomeXtraInf and randNumStr is \(randNumStr)")
     }
     
+    //this next method will hold because we are not using segue, so now the view is preserved rather than wiped out in the heap.
+    func pasByaMethod(str: String){
+        passedByMethodDataLabel.text = str
+        print("by not using segue, view is preserved. str= \(str)")
+    }
+
+
 //    func getExtraInfo(inf: String){
 //        extraInfo.text = inf  //make some extra info to delegate
 //    }
