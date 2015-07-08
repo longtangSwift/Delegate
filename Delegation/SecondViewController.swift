@@ -11,7 +11,7 @@ import UIKit
 protocol DataEnteredDelegate: class{
     func userDidEnterInformation(info: String)
     //anytihng that conforms to this will have a func that receives a string.  Within the func, the func will set the text, so it doesn't need to return anything.  The method will do the work of setting the text of the label.
-    func getSomeXtraInf(randNum: String)
+
     func pasByaMethod(str: String)
 }
 

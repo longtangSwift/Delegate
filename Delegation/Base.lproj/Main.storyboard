@@ -129,8 +129,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7KR-45-Km7">
-                                <rect key="frame" x="273" y="391" width="54" height="30"/>
-                                <state key="normal" title="GoBack"/>
+                                <rect key="frame" x="285" y="391" width="30" height="30"/>
                                 <connections>
                                     <action selector="goBackToFirstVC:" destination="juq-h4-6H6" eventType="touchUpInside" id="me6-1q-DKk"/>
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="GoFirstVC" id="gb5-oq-yvr"/>
