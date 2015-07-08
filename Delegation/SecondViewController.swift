@@ -18,6 +18,9 @@ class SecondViewController: UIViewController, GetStuffFromFirstViewDelegate {
 
     
     var delegate: DataEnteredDelegate? = nil
+    var holdingStringOfSecView = String(){
+        didSet{print("didSet of holdingStringOfSecView which now = \(holdingStringOfSecView)")}
+    }
     
     func getInfoFromFirstView(infoStr: String?) {
         print("we are in ViewTwo and the stuff we got from ViewOne is infoStr: \(infoStr)")
@@ -25,7 +28,7 @@ class SecondViewController: UIViewController, GetStuffFromFirstViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        title = holdingStringOfSecView
         // Do any additional setup after loading the view.
     }
     
@@ -59,8 +62,6 @@ class SecondViewController: UIViewController, GetStuffFromFirstViewDelegate {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print("in prepareforseg of Class SecondViewController")
-
         var destination: UIViewController?
         destination = segue.destinationViewController
             // the top layer will be used and things end here (ie it won't meet the next if then statement
@@ -77,8 +78,11 @@ class SecondViewController: UIViewController, GetStuffFromFirstViewDelegate {
                         firsVC.delegateActingOnBehalfOfViewTwoToGetThingsFromViewOne = self
                         //also, we are going to send data TO ViewController
                         delegate!.getSomeXtraInf(extraInf)
-                        print("in case DismissAndGoFirVC and dataTexFild = \(dataTextField.text)")
+                        let information = dataTextField.text
+                        print("in case DismissAndGoFirVC and dataTexFild = \(information)")
                         delegate!.userDidEnterInformation(dataTextField.text)
+                        firsVC.holdString = information
+                        
                     default:
                         break
                     }
