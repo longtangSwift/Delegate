@@ -22,8 +22,8 @@
                                 <rect key="frame" x="255" y="570" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="34" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2o-ld-qaZ">
-                                <rect key="frame" x="20" y="64" width="457" height="370"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=".." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="34" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2o-ld-qaZ">
+                                <rect key="frame" x="20" y="20" width="457" height="414"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="457" id="G2i-4A-vGF"/>
                                 </constraints>
@@ -86,7 +86,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1095" y="384"/>
+            <point key="canvasLocation" x="1190" y="1123"/>
         </scene>
         <!--Second VC-->
         <scene sceneID="tYa-Kl-wAu">
@@ -107,10 +107,11 @@
                                 <state key="normal" title="dismiss and show data"/>
                                 <connections>
                                     <action selector="sendData:" destination="juq-h4-6H6" eventType="touchUpInside" id="Xqc-io-vK8"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="DismissAndGoFirstVC" id="foq-6N-0To"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="u type here: " translatesAutoresizingMaskIntoConstraints="NO" id="Wfr-z2-Ktl">
-                                <rect key="frame" x="20" y="72" width="493" height="237"/>
+                                <rect key="frame" x="20" y="28" width="493" height="237"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="237" id="3Qx-cz-Jx5"/>
@@ -118,9 +119,19 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7KR-45-Km7">
+                                <rect key="frame" x="239" y="273" width="54" height="30"/>
+                                <state key="normal" title="GoBack"/>
+                                <connections>
+                                    <action selector="goBackToFirstVC:" destination="juq-h4-6H6" eventType="touchUpInside" id="me6-1q-DKk"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="GoFirstVC" id="gb5-oq-yvr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="7KR-45-Km7" firstAttribute="top" secondItem="Wfr-z2-Ktl" secondAttribute="bottom" constant="8" symbolic="YES" id="EYf-pI-izb"/>
+                            <constraint firstItem="7KR-45-Km7" firstAttribute="centerX" secondItem="Wfr-z2-Ktl" secondAttribute="centerX" id="FCR-PK-JqC"/>
                             <constraint firstItem="Wfr-z2-Ktl" firstAttribute="top" secondItem="plN-f2-iKI" secondAttribute="bottom" constant="8" symbolic="YES" id="Gg3-iv-4bx"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Wfr-z2-Ktl" secondAttribute="trailing" constant="67" id="GwI-eX-BX4"/>
                             <constraint firstItem="Cyx-6x-gEx" firstAttribute="leading" secondItem="Wfr-z2-Ktl" secondAttribute="leading" id="QVr-Zc-jlp"/>
@@ -128,12 +139,6 @@
                             <constraint firstItem="Wfr-z2-Ktl" firstAttribute="leading" secondItem="nOz-gp-Ao1" secondAttribute="leadingMargin" id="zxy-oa-bl9"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="more" id="PPH-K9-ebd">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
-                        </userDefinedRuntimeAttributes>
-                    </tabBarItem>
                     <navigationItem key="navigationItem" title="Second VC" id="CPi-dk-Mmk"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -142,7 +147,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SMz-s2-mko" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1189" y="625"/>
+            <point key="canvasLocation" x="1485" y="328"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5ET-nz-abk">
@@ -160,7 +165,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xnp-Qd-TlM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-63" y="764"/>
+            <point key="canvasLocation" x="-126" y="495"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="gb5-oq-yvr"/>
+    </inferredMetricsTieBreakers>
 </document>

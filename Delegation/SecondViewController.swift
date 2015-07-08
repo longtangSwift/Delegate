@@ -14,11 +14,14 @@ protocol DataEnteredDelegate: class{
     func getSomeXtraInf(randNum: String)
 }
 
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController, GetStuffFromFirstViewDelegate {
 
     
     var delegate: DataEnteredDelegate? = nil
     
+    func getInfoFromFirstView(infoStr: String?) {
+        print("we are in ViewTwo and the stuff we got from ViewOne is infoStr: \(infoStr)")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,14 +39,52 @@ class SecondViewController: UIViewController {
     
     @IBOutlet weak var dataTextField: UITextView!
 
-    
+    //this action will QuasiSegue back to firstVC.  So, this is kind of like our prepareforSegue. And it is: it takes the information from SecondVC back to FirstVC by sending strings to the two methods: userDidEnterINformation and getSomeXtraInf which are methods that conform to the DataEnteredDelegate protocol
     @IBAction func sendData(sender: AnyObject) {
         if delegate != nil {
             let information: String = dataTextField.text
             delegate!.userDidEnterInformation(information)
-            self.navigationController?.popViewControllerAnimated(true)
+            //self.navigationController?.popViewControllerAnimated(true)
             delegate!.getSomeXtraInf(extraInf)
         }
+    }
+    @IBAction func goBackToFirstVC(sender: AnyObject) {
+        //this command takes it from the navcontroller back to the rootView.
+        //now x looks to be a delegate going into the first controller to get informed.
+        let FirstVC = navigationController?.visibleViewController as? ViewController
+        FirstVC?.delegateActingOnBehalfOfViewTwoToGetThingsFromViewOne = self //because we have conformed to the GetStuffFromFirstViewDelegate protocol we can send that delegate into viewone.
+        
+        //self.navigationController?.popToRootViewControllerAnimated(true)
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print("in prepareforseg of Class SecondViewController")
+
+        var destination: UIViewController?
+        destination = segue.destinationViewController
+            // the top layer will be used and things end here (ie it won't meet the next if then statement
+        if let navController = destination as? UINavigationController{
+                destination = navController.visibleViewController
+            }
+            //the original is if let firsVC = segue.destinationViewController as? ViewController       [which would not work if ViewControler were embedded in a NC]
+        if let firsVC = destination as? ViewController{
+                if let identifier = segue.identifier{
+                    switch identifier{
+                    case "GoFirstVC":
+                        firsVC.delegateActingOnBehalfOfViewTwoToGetThingsFromViewOne = self
+                    case "DismissAndGoFirstVC":
+                        firsVC.delegateActingOnBehalfOfViewTwoToGetThingsFromViewOne = self
+                        //also, we are going to send data TO ViewController
+                        delegate!.getSomeXtraInf(extraInf)
+                        print("in case DismissAndGoFirVC and dataTexFild = \(dataTextField.text)")
+                        delegate!.userDidEnterInformation(dataTextField.text)
+                    default:
+                        break
+                    }
+                }
+            }
+        
     }
 
     //-- the 2nd model of our MVC lives below:  The bit of extra is a random # that is generated.
